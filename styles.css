@@ -46,3 +46,25 @@ nav {
     cursor: pointer;
   }
   
+  .hero {
+    background-image: url('https://source.unsplash.com/random/1920x1080/?apartment');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  .hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
