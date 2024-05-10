@@ -42,3 +42,32 @@ const properties = [
       }
   ];
 
+
+
+   // Get modal elements
+   const modal = document.getElementById('registration-modal');
+   const closeBtn = document.getElementsByClassName('close-btn')[0];
+   
+   // Render properties on the page
+   function renderProperties() {
+     const propertyList = document.getElementById('property-list');
+     propertyList.innerHTML = '';
+   
+     properties.forEach(property => {
+       const li = document.createElement('li');
+       li.innerHTML = `
+         <h3>${property.name}</h3>
+         <p>Location: ${property.location}</p>
+         <p>Rent: $${property.rent}</p>
+         <p>Area: ${property.area} sq.ft.</p>
+         <p>Agent: ${property.agentName}</p>
+         ${property.images.map(img => `<img src="${img}" alt="${property.name}">`).join('')}
+         <button class="register-btn">Register Interest</button>
+       `;
+       propertyList.appendChild(li);
+   
+       const registerBtn = li.querySelector('.register-btn');
+       registerBtn.addEventListener('click', () => showRegistrationModal(property.id));
+     });
+   }
+
