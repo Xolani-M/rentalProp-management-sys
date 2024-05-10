@@ -58,7 +58,7 @@ const properties = [
        li.innerHTML = `
          <h3>${property.name}</h3>
          <p>Location: ${property.location}</p>
-         <p>Rent: $${property.rent}</p>
+         <p>Rent: R${property.rent}</p>
          <p>Area: ${property.area} sq.ft.</p>
          <p>Agent: ${property.agentName}</p>
          ${property.images.map(img => `<img src="${img}" alt="${property.name}">`).join('')}
@@ -110,3 +110,39 @@ const properties = [
     closeModal();
   });
 
+
+   // Close modal when clicking outside or pressing Esc key
+   window.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+  
+  // Close modal when clicking the close button
+  closeBtn.addEventListener('click', closeModal);
+  
+  // Search and filter functionality
+  function filterProperties() {
+    const searchInput = document.getElementById('search-input');
+    const searchTerm = searchInput.value.toLowerCase();
+  
+    const filteredProperties = properties.filter(property =>
+      property.name.toLowerCase().includes(searchTerm) ||
+      property.location.toLowerCase().includes(searchTerm)
+    );
+  
+    renderProperties(filteredProperties);
+  }
+  
+// Event listeners
+document.getElementById('search-btn').addEventListener('click', filterProperties);
+document.getElementById('search-input').addEventListener('input', filterProperties);
+
+// Initial render
+renderProperties();
