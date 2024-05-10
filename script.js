@@ -85,3 +85,28 @@ const properties = [
   }
   
 
+  // Register interest form submission
+  const interestForm = document.getElementById('interest-form');
+  interestForm.addEventListener('submit', e => {
+    e.preventDefault();
+  
+    const propertyId = document.getElementById('property-id').value;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+  
+    // Find the property object based on the selected property ID
+    const selectedProperty = properties.find(property => property.id === parseInt(propertyId));
+  
+    // Get the agent email for the selected property
+    const agentEmail = selectedProperty.agentEmail;
+  
+    // Send the form data and agent email to the backend API
+    // Replace this with your actual API call
+    console.log('Property ID:', propertyId);
+    console.log('Name:', name);
+    console.log('Email:', email);
+    console.log('Agent Email:', agentEmail);
+  
+    closeModal();
+  });
+

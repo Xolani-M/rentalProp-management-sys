@@ -8,3 +8,8 @@ This project aims to create a system that streamlines the process of registering
 
 - Added a registration modal for users to register their interest in properties.
 
+- Added some styles for modal, registration button, a responsive design and a background image url that randomly generates apartment images fetched from unsplash.
+
+
+
+
