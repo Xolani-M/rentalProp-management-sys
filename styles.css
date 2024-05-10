@@ -67,4 +67,33 @@ nav {
     font-size: 48px;
     margin-bottom: 20px;
   }
+
+
+  .property-list {
+    padding: 40px;
+  }
+  
+  #property-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  #property-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  #property-list li img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
   
