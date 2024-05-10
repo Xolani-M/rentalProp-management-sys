@@ -71,3 +71,17 @@ const properties = [
      });
    }
 
+
+   // Show registration modalAdd
+  function showRegistrationModal(propertyId) {
+    modal.style.display = 'block';
+    document.getElementById('property-id').value = propertyId;
+  }
+  
+  // Close registration modal
+  function closeModal() {
+    modal.style.display = 'none';
+    document.getElementById('interest-form').reset();
+  }
+  
+
