@@ -1,46 +1,87 @@
-//Dummpy data
+// Dummy data
 const properties = [
     {
       id: 1,
-      name: 'Luxury Apartment',
+      name: 'Sapphire Towers',
       location: 'Cape Town',
-      rent: 8000,
-      area: 1200,
-      images: ['https://example.com/image1.jpg', 'https://example.com/image2.jpg'],
-      agentName: 'John Smith',
+      rent: 9000,
+      area: 1300,
+      images: ['https://example.com/image1.jpg'],
+      agentName: 'Alice Johnson',
       agentEmail: 'agent1@example.com'
     },
     {
       id: 2,
-      name: 'The Loft Life',
-      location: 'observatory',
-      rent: 4500,
-      area: 900,
+      name: 'Golden Crest Apartments',
+      location: 'Cape Town',
+      rent: 6000,
+      area: 1000,
+      images: ['https://example.com/image2.jpg'],
+      agentName: 'Alice Johnson',
+      agentEmail: 'agent1@example.com'
+    },
+    {
+      id: 3,
+      name: 'City View Suites',
+      location: 'Stellenbosch',
+      rent: 7500,
+      area: 1100,
       images: ['https://example.com/image3.jpg'],
-      agentName: 'John Smith',
+      agentName: 'Bob Williams',
       agentEmail: 'agent2@example.com'
     },
     {
-        id: 3,
-        name: 'The Urban Retreat',
-        location: 'Milnerton',
-        rent: 7000,
-        area: 1000,
-        images: ['https://example.com/image3.jpg'],
-        agentName: 'GI Joe',
-        agentEmail: 'agent2@example.com'
-      },
-      {
-        id: 4,
-        name: 'The Elevated Abode',
-        location: 'Khayelitsha',
-        rent: 5000,
-        area: 900,
-        images: ['https://example.com/image3.jpg'],
-        agentName: 'GI Joe',
-        agentEmail: 'agent2@example.com'
-      }
+      id: 4,
+      name: 'Oceanfront Oasis',
+      location: 'Hermanus',
+      rent: 8500,
+      area: 1200,
+      images: ['https://example.com/image4.jpg'],
+      agentName: 'Bob Williams',
+      agentEmail: 'agent2@example.com'
+    },
+    {
+      id: 5,
+      name: 'Coastal View Residences',
+      location: 'Camps Bay',
+      rent: 5500,
+      area: 950,
+      images: ['https://example.com/image5.jpg'],
+      agentName: 'Charlie Brown',
+      agentEmail: 'agent3@example.com'
+    },
+    {
+      id: 6,
+      name: 'Riverside Apartments',
+      location: 'Paarl',
+      rent: 7000,
+      area: 1050,
+      images: ['https://example.com/image6.jpg'],
+      agentName: 'Charlie Brown',
+      agentEmail: 'agent3@example.com'
+    },
+    {
+      id: 7,
+      name: 'Parkside Residences',
+      location: 'Somerset West',
+      rent: 6000,
+      area: 1000,
+      images: ['https://example.com/image7.jpg'],
+      agentName: 'David Smith',
+      agentEmail: 'agent4@example.com'
+    },
+    {
+      id: 8,
+      name: 'Lakeview Apartments',
+      location: 'Stellenbosch',
+      rent: 5000,
+      area: 900,
+      images: ['https://example.com/image8.jpg'],
+      agentName: 'David Smith',
+      agentEmail: 'agent4@example.com'
+    },
   ];
+  
 
 
 
@@ -58,7 +99,7 @@ const properties = [
        li.innerHTML = `
          <h3>${property.name}</h3>
          <p>Location: ${property.location}</p>
-         <p>Rent: R${property.rent}</p>
+         <p>Rent: R ${property.rent}</p>
          <p>Area: ${property.area} sq.ft.</p>
          <p>Agent: ${property.agentName}</p>
          ${property.images.map(img => `<img src="${img}" alt="${property.name}">`).join('')}
@@ -93,6 +134,7 @@ const properties = [
     const propertyId = document.getElementById('property-id').value;
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
   
     // Find the property object based on the selected property ID
     const selectedProperty = properties.find(property => property.id === parseInt(propertyId));
@@ -105,6 +147,7 @@ const properties = [
     console.log('Property ID:', propertyId);
     console.log('Name:', name);
     console.log('Email:', email);
+    console.log('Phone:', phone)
     console.log('Agent Email:', agentEmail);
   
     closeModal();
