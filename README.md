@@ -49,7 +49,7 @@ This project aims to create a system that streamlines the process of registering
 ## HTML Structure
 
 ### Header and Navigation
-- Logo with a link to the homepage (`<a href="#">`)
+- Logo with a link to the homepage
 - Search container with input field and search button using Font Awesome icons.
 
 ### Main Content
