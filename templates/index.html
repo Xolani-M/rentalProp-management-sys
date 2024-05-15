@@ -1,0 +1,90 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Interest Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='/styles.css') }}">
+</head>
+<body>
+    <header>
+      <nav>
+          <div class="logo">
+              <a href="#"><i class="fas fa-home"></i> Bitprop</a>
+          </div>
+          <div class="search-container">
+              <input type="text" id="search-input" placeholder="Search properties...">
+              <button id="search-btn"><i class="fas fa-search"></i></button>
+          </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-content">
+          <h1>Find Your Dream Property</h1>
+          <p>Explore our curated list of available properties and register your interest today.</p>
+      </div>
+    </section>
+
+
+
+    <h1>Available Properties</h1>
+    <ul>
+        {% for property in properties %}
+        <li>
+            <h2>{{ property[1] }}</h2>
+            <p>Location: {{ property[2] }}</p>
+            <p>Rent: R {{ property[4] }}</p>
+            <p>Area: {{ property[5] }} sq.ft.</p>
+            <p>Agent Name: {{ property[3] }}</p>
+            <button onclick="showRegistrationModal('{{ property[0] }}')">Register Interest</button>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Registration Modal -->
+    <div id="registration-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Register Interest</h2>
+            <form id="interest-form" method="POST" action="{{ url_for('register_interest') }}">
+                <input type="hidden" id="property-id" name="property_id">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <button type="submit">Register Interest</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Show the registration modal
+        function showRegistrationModal(propertyId) {
+            var modal = document.getElementById('registration-modal');
+            var propertyIdInput = document.getElementById('property-id');
+            propertyIdInput.value = propertyId;
+            modal.style.display = 'block';
+        }
+
+        // Close the registration modal
+        var closeBtn = document.getElementsByClassName('close-btn')[0];
+        closeBtn.onclick = function() {
+            var modal = document.getElementById('registration-modal');
+            modal.style.display = 'none';
+        }
+
+        // Close the modal when clicking outside
+        window.onclick = function(event) {
+            var modal = document.getElementById('registration-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

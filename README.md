@@ -1,6 +1,8 @@
 # rentalProp-management-sys
 This project aims to create a system that streamlines the process of registering interest from prospective tenants and notifying the responsible agents.
 
+<br>
+
 ## Development Process
 
 1. **Understanding Requirements:**
@@ -42,7 +44,7 @@ This project aims to create a system that streamlines the process of registering
    - Thorough testing of frontend and backend components.
    - Debugging and resolving any issues encountered.
 
-
+<br>
 
 ## Progress Update
 
@@ -63,8 +65,11 @@ This project aims to create a system that streamlines the process of registering
   - Phone number input field with validation
   - Submit button
 
+<br>
+
 
 ## CSS Styles
+<br>
 
 ### Global Styles
 - Imported Google Font 'Poppins' for consistent typography across the site.
@@ -99,3 +104,31 @@ This project aims to create a system that streamlines the process of registering
 ### Responsive Design
 - Included media queries for responsive design at different screen sizes (768px and 480px).
 - Adjusted font sizes, modal width, header alignment, and grid columns for optimal viewing.
+
+<br>
+
+
+# Bug: Django Auto-Detection in Visual Studio Code
+
+## Issue Description
+In Visual Studio Code, there is a bug where Django is automatically detected even if it's not being used in the current project. This can lead to unexpected behavior, such as incorrect syntax highlighting or file associations.
+
+## Workaround Solution
+To address this bug and prevent Django auto-detection, add the following code to your JSON settings in Visual Studio Code:
+
+```json
+{
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "files.associations": {
+    "*.html": "html"
+  }
+}
+```
+
+## Explanation
+
+The code above explicitly instructs Visual Studio Code to treat Django HTML files as regular HTML files, preventing the automatic Django detection and associated issues.
+
+In an event that you want to use django: You can go to "Select Language Mode", and search for "Django HTML", select and you good to go, now you can use both Django and HTML
