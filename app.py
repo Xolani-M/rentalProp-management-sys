@@ -1,48 +1,54 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
+from app_files.database import fetch_properties, insert_tenant
+from app_files.auth import login, logout, agent_dashboard, admin_dashboard
+from app_files.email_utils import send_notification_email
 import sqlite3
 
 
-#Initializing the flask app (creates an instance of the flask class)
 app = Flask(__name__)
+app.secret_key = "Champ!101"
 
-
-#Connect Sqlite database
-connect = sqlite3.connect("prospect_tenants.db",check_same_thread=False)
-cursor = connect.cursor()
-
-#Define the home page route and rendering index.html
 @app.route("/", methods=["GET", "POST"])
 def index():
-    
-    # Fetch properties from the database with column names
-    cursor.execute("SELECT id, name, address,rent, area, agent_name FROM properties")
-    properties = cursor.fetchall()
-            
-    return render_template("/index.html",properties=properties)
+    properties = fetch_properties()
+    return render_template("/index.html", properties=properties)
 
-
-# Route to handle registration form submission
 @app.route('/register_interest', methods=["POST"])
 def register_interest():
-    # Get form data from the request
+    properties = fetch_properties()
     name = request.form["name"]
     email = request.form["email"]
     phone = request.form["phone"]
     property_id = request.form["property_id"]
 
-    # Insert tenant information into the tenants table
-    cursor.execute("INSERT INTO tenants (property_id, property_name, name, email, phone) VALUES (?, ?, ?, ?, ?)",
-              (property_id, get_property_name(property_id), name, email, phone))
-    connect.commit()
+    insert_tenant(property_id, name, email, phone)
+    
+    print(property_id,name, email,phone)
+    
+    # Connect to the SQLite database
+    connect = sqlite3.connect("prospect_tenants.db", check_same_thread=False)
+    cursor = connect.cursor()
+        
+    # Retrieve agent email based on property_id
+    cursor.execute("""
+        SELECT a.email
+        FROM properties p
+        JOIN agents a ON p.agent_name = a.name
+        WHERE p.id = ?
+    """, (property_id,))
+    agent_email = cursor.fetchone()[0]
+    
+    # Send notification email to agent
+    send_notification_email(agent_email, name, property_id)
+    
+    
+    return render_template("index.html", properties=properties, success_modal=True)
 
-    # Redirect back to the home page or display a success message
-    return redirect(url_for('index'))
-
-# Helper function to get the property name from the property ID
-def get_property_name(property_id):
-    cursor.execute("SELECT name FROM properties WHERE id = ?", (property_id,))
-    property_name = cursor.fetchone()[0]
-    return property_name
+# Authentication routes
+app.add_url_rule("/login", view_func=login, methods=["GET", "POST"])
+app.add_url_rule("/logout", view_func=logout)
+app.add_url_rule("/agent", view_func=agent_dashboard)
+app.add_url_rule("/admin", view_func=admin_dashboard)
 
 
 if __name__ == "__main__":

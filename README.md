@@ -105,6 +105,24 @@ This project aims to create a system that streamlines the process of registering
 - Included media queries for responsive design at different screen sizes (768px and 480px).
 - Adjusted font sizes, modal width, header alignment, and grid columns for optimal viewing.
 
+
+##DATABASE
+
+- Used a create_table.py to create all the neccessary table
+- Completed functionaty to store form data in th database
+- I broke the system somewhere, retriving or passing wrong data from the database
+- I manage to make the login system to work
+- I use sendgrip api for email notification and it works
+- I was able to render the admin and agent dashboard but could i had a proble with populationg it.
+- I think most of the problems i have are linked.
+- The users are able to register their interest and a modal pops up notifying them that
+the registration was successful and the respective agent will be in contact with them.
+- The search button is not working.
+- Did not put enough docstrings
+- The logout button is working
+- I think the interface is basic enough and user friendly
+- Tenants are able to view properties
+
 <br>
 
 

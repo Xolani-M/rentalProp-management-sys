@@ -45,6 +45,26 @@ nav {
     padding: 8px 16px;
     cursor: pointer;
   }
+
+  /* Style the LOGIN link */
+nav .login-container {
+  margin-left: 10px; /* Adjust spacing */
+}
+
+nav .login-container a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: #377dba;
+}
+
+nav .login-container a:hover {
+  background-color:   #3c4c57;
+}
+
+
+
   
   .hero {
     background-image: url('https://source.unsplash.com/random/1920x1080/?apartment');

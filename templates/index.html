@@ -14,13 +14,15 @@
           <div class="logo">
               <a href="#"><i class="fas fa-home"></i> Bitprop</a>
           </div>
+          <div class="login-container">
+            <a href="{{url_for('login')}}">PERSONNEL LOGIN</a>
+            </div>
           <div class="search-container">
               <input type="text" id="search-input" placeholder="Search properties...">
               <button id="search-btn"><i class="fas fa-search"></i></button>
           </div>
       </nav>
     </header>
-
     <section class="hero">
       <div class="hero-content">
           <h1>Find Your Dream Property</h1>
@@ -29,20 +31,21 @@
     </section>
 
 
-
-    <h1>Available Properties</h1>
-    <ul>
-        {% for property in properties %}
-        <li>
-            <h2>{{ property[1] }}</h2>
-            <p>Location: {{ property[2] }}</p>
-            <p>Rent: R {{ property[4] }}</p>
-            <p>Area: {{ property[5] }} sq.ft.</p>
-            <p>Agent Name: {{ property[3] }}</p>
-            <button onclick="showRegistrationModal('{{ property[0] }}')">Register Interest</button>
-        </li>
-        {% endfor %}
-    </ul>
+    <section class="property-list"></section>
+        <h1>Available Properties</h1>
+        <ul id="property-list">
+            {% for property in properties %}
+            <li>
+                <h2>{{ property[1] }}</h2>
+                <p>Location: {{ property[2] }}</p>
+                <p>Rent: R {{ property[3] }}</p>
+                <p>Area: {{ property[4] }} sq.ft.</p>
+                <p>Agent Name: {{ property[5] }}</p>
+                <button onclick="showRegistrationModal('{{ property[0] }}')">Register Interest</button>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
 
     <!-- Registration Modal -->
     <div id="registration-modal" class="modal" style="display: none;">
@@ -61,6 +64,10 @@
             </form>
         </div>
     </div>
+
+    {% if success_modal %}
+    {% include "success_modal.html" %}
+    {% endif %}
 
     <script>
         // Show the registration modal
@@ -85,6 +92,44 @@
                 modal.style.display = 'none';
             }
         }
+
+
+        // Show the success modal
+        function showSuccessModal() {
+            var successModal = document.getElementById('success-modal');
+            successModal.style.display = 'block';
+        }
+
+        // Close the success modal
+        var successCloseBtn = document.getElementsByClassName('close-btn')[1]; // Assuming there's only one other close button
+        successCloseBtn.onclick = function() {
+            var successModal = document.getElementById('success-modal');
+            successModal.style.display = 'none';
+        }
+
+        // Close the modal when clicking outside
+        window.onclick = function(event) {
+            var successModal = document.getElementById('success-modal');
+            if (event.target == successModal) {
+            successModal.style.display = 'none';
+            }
+        }
+
+
+        // Redirect to the index page after a delay when the success modal is shown
+        function redirectToIndex() {
+            setTimeout(function() {
+            window.location.href = "{{ url_for('index') }}";
+            }, 7000); // Delay in milliseconds (5 seconds in this example)
+        }
+
+
+
+        // Show the success modal and redirect to the index page after a delay
+        <!-- {% if success_modal %}
+        showSuccessModal();
+        redirectToIndex();
+        {% endif %} --> 
     </script>
 </body>
 </html>

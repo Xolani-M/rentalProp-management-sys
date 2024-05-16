@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <h2>Tenant Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Property Name</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Property ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tenant in tenant_data %}
+            <tr>
+                <td>{{ tenant[0] }}</td>
+                <td>{{ tenant[1] }}</td>
+                <td>{{ tenant[2] }}</td> 
+                <td>{{ tenant[3] }}</td> 
+                <td>{{ tenant[4] }}</td> 
+                <td>{{ tenant[5] }}</td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

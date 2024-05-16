@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agent Dashboard</title>
+</head>
+<body>
+    <h1>Agent Dashboard</h1>
+    <h2>Tenant Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Property Name</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Property ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tenant in tenant_data %}
+            <tr>
+                <td>{{ tenant[0] }}</td> <!-- Tenant ID -->
+                <td>{{ tenant[1] }}</td> <!-- Property Name -->
+                <td>{{ tenant[2] }}</td> <!-- Tenant Name -->
+                <td>{{ tenant[3] }}</td> <!-- Tenant Email -->
+                <td>{{ tenant[4] }}</td> <!-- Tenant Phone -->
+                <td>{{ tenant[5] }}</td> <!-- Property ID -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
